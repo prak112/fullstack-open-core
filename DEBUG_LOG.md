@@ -64,7 +64,7 @@
         Uncaught TypeError: Cannot read properties of undefined
     ```
 - **SOLUTION** :
-    - Always label `prop` variables being transactioned between Parent and Child components with the same name
+    - Always label `prop` attributes being transactioned between Parent and Child components with the same name
         ```jsx
         ...
         
