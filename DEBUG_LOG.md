@@ -1,5 +1,12 @@
 # ISSUE - RESOLVE 
-## #1
+- Issue #1: [Unable to use Vite template to create React application](#issue-1-unable-to-use-vite-template-to-create-react-application)
+- Issue #2: [Unable to run the react app created using Vite](#issue-2-unable-to-run-the-react-app-created-using-vite)
+- Issue #3: [Unable to render Total exercises component](#issue-3-unable-to-render-total-exercises-component)
+
+<br>
+<hr>
+
+## Issue #1: Unable to use Vite template to create React application
 - **CONTEXT** : 
     - Unable to use `Vite` template to create `React` application when using 
     ```bash
@@ -19,7 +26,7 @@
     ```
 <hr>
 
-## #2 
+## Issue #2: Unable to run the react app created using Vite
 - **CONTEXT** : 
     - Unable to run the react app created using `Vite`
 - **ERROR** :
@@ -32,7 +39,7 @@
 
 <hr>
 
-## #3
+## Issue #3: Unable to render Total exercises component
 - **CONTEXT** :
     - Unable to render `Total` exercises component by passing `parts` object from `App` (Parent/Top level component) to `Total` component
     ```jsx
@@ -90,4 +97,3 @@
 
 <hr>
 
-## #4
