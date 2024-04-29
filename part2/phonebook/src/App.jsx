@@ -1,23 +1,31 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Filter, PersonForm, Persons } from './components/components'
+import axios from 'axios'
 
 export default function App() {
-  const persons = [
-    { id: 0, name: "Ambassador Spock", number: "56414-456-55221123" },
-    { id: 1, name: "Mojo Jojo", number: "992-211-33456" },
-    { id: 2, name: "Grim Reaper", number: "010-000-0001" },
-    { id: 3, name: "Pika Pika", number: "777-8778-9879" },
-    { id: 4, name: "Ada Lovelace", number: "39-44-5323523" },
-    { id: 5, name: "Dan Abramov", number: "12-43-234345" },
-    { id: 6, name: "Mary Poppendieck", number: "39-23-6423122" }
-  ]
-
   // state variables and setters
-  const [originalPersons, setOriginalPersons] = useState(persons)
-  const [filteredPersons, setFilteredPersons] = useState(persons)
+  const [originalPersons, setOriginalPersons] = useState([])
+  const [filteredPersons, setFilteredPersons] = useState([])
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
   const [newSearch, setNewSearch] = useState('');
+
+  // axios GET request from db.json
+  const serverUrl = 'http://localhost:3001/persons'
+  const hook = () => {
+    console.log('Effect initiated')
+    axios
+      .get(serverUrl)
+      .then((response) => {
+          console.log('Promise complete');
+          console.log(response.data);
+          setOriginalPersons(response.data);
+          setFilteredPersons(response.data);
+        }
+      )
+  }
+  useEffect(hook, []);
+    
 
   // new contact
   const addContact = (event) => {
