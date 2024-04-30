@@ -3,9 +3,11 @@
 - This repository consists of Core and Extension parts of the course, i.e., Parts 0-7
 
 ## Table of Contents
-- Part 0 - [Fundamentals of Web Apps](#part-0---fundamentals-of-web-apps)
-- Part 1 - [Introduction to React](#part-1---introduction-to-react)
-- Part 2 - [Communicating with Server](#part-2---communicating-with-server)
+| PART | Description |
+| --- | --- |
+| **Part 0** | [Fundamentals of Web Apps](#part-0---fundamentals-of-web-apps) |
+| **Part 1** | [Introduction to React](#part-1---introduction-to-react) |
+| **Part 2** | [Communicating with Server](#part-2---communicating-with-server) |
 
 
 <br>
@@ -13,22 +15,34 @@
 
 # Part 0 - Fundamentals of Web Apps
 - Exercises to represent workflow in the application as a sequence diagram using _Mermaid_
-    - Ex 0.4 - [Adding new note in old-school application](/part0/new-note-diagram.md)
-    - Ex 0.5 - [Single Page Application (SPA)](/part0/spa-diagram.md)
-    - Ex 0.6 - [Adding new note in SPA](/part0/spa-new-note-diagram.md)
+
+    | Exercises | Description |
+    | --- | --- |
+    | Ex 0.4 | [Adding new note in old-school application](/part0/new-note-diagram.md) |
+    | Ex 0.5 | [Single Page Application (SPA)](/part0/spa-diagram.md) |
+    | Ex 0.6 | [Adding new note in SPA](/part0/spa-new-note-diagram.md) |
 
 <br>
 <hr>
 
 # Part 1 - Introduction to React
 - Exercises to build three applications bit-by-bit using _React_ and _JavaScript_
-    - Ex 1.1 to 1.5 - [Course Information](/part1/courseinfo/src/App.jsx) 
-    - Ex 1.6 to 1.11 - [Unicafe Feedback](/part1/unicafe-feedback/src/App.jsx)
-    - Ex 1.12 to 1.14 - [Anecdotes](/part1/anecdotes/src/App.jsx)
+
+    | Exercises | Description |
+    | --- | --- |
+    | Ex 1.1 to 1.5 | [Course Information](/part1/courseinfo/src/App.jsx) |
+    | Ex 1.6 to 1.11 | [Unicafe Feedback](/part1/unicafe-feedback/src/App.jsx) |
+    | Ex 1.12 to 1.14 | [Anecdotes](/part1/anecdotes/src/App.jsx) |
 
 <br>
 <hr>
 
 # Part 2 - Communicating with Server
-- Ex 2.1 to 2.5 - Refactor and enhance [Course Information app](/part2/courseinfo/src/App.jsx)
-- 
+- Exercises to advance into working with backend using HTTP Methods via `json-server` & `axios`
+
+    | Exercises | Description |
+    | --- | --- |
+    | Ex 2.1 to 2.5 | Refactor and enhance [Course Information app](/part2/courseinfo/src/App.jsx) |
+    | Ex 2.6 to 2.10 | Initiate [Phonebook app](/part2/phonebook/src/App.jsx) |
+    | Ex 2.11 | Enhance Phonebook app, Setup `json-server`, `axios` library and `useEffect` hook for Phonebook contacts |
+    | Ex 2.12 to 2.15 | Enhance Phonebook app, Setup HTTP Methods, update backend & frontend |
