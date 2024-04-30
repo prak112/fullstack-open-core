@@ -8,7 +8,7 @@ export function Filter({ searchTerm, handleSearchResult }){
     )
     }
   
-export function PersonForm({ name, handleName, number, handleNumber, handleSubmit  }) {
+export function ContactForm({ name, handleName, number, handleNumber, handleSubmit  }) {
     return (
         <>
         <form onSubmit={handleSubmit}>
@@ -26,15 +26,16 @@ export function PersonForm({ name, handleName, number, handleNumber, handleSubmi
     )
 }
 
-export function Persons({personsList}) {
+export function Contacts({contactsList, deleteContact}) {
     return (
         <>
         <ul>
-            { personsList.map((person) => 
-                <li key={person.id}>
-                    <b>{person.name} :</b>  {person.number}
+            { contactsList.map((contact) => 
+                <li key={contact.id}>
+                    <b>{contact.name} :</b>  {contact.number} &ensp;
+                    <button onClick={() => deleteContact(contact)}>delete</button>
                 </li>
-            ) 
+                ) 
             }
         </ul>    
         </>

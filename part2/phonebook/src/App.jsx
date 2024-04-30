@@ -1,28 +1,23 @@
 import { useState, useEffect } from 'react'
-import { Filter, PersonForm, Persons } from './components/components'
-import axios from 'axios'
+import { Filter, ContactForm, Contacts } from './components/components'
+import phonebookService from './services/phonebook'
 
 export default function App() {
   // state variables and setters
-  const [originalPersons, setOriginalPersons] = useState([])
-  const [filteredPersons, setFilteredPersons] = useState([])
+  const [originalContacts, setOriginalContacts] = useState([])
+  const [filteredContacts, setFilteredContacts] = useState([])
   const [newName, setNewName] = useState('');
   const [newNumber, setNewNumber] = useState('');
   const [newSearch, setNewSearch] = useState('');
 
-  // axios GET request from db.json
-  const serverUrl = 'http://localhost:3001/persons'
+  // Handle HTTP requests via phonebook.js to db.json
   const hook = () => {
-    console.log('Effect initiated')
-    axios
-      .get(serverUrl)
-      .then((response) => {
-          console.log('Promise complete');
-          console.log(response.data);
-          setOriginalPersons(response.data);
-          setFilteredPersons(response.data);
-        }
-      )
+    phonebookService
+      .getAll()
+      .then((initialContacts) => {
+        setOriginalContacts(initialContacts);
+        setFilteredContacts(initialContacts);
+      })
   }
   useEffect(hook, []);
     
@@ -30,21 +25,34 @@ export default function App() {
   // new contact
   const addContact = (event) => {
     event.preventDefault();
-    const nameObject = {
+    const contactObject = {
       name: newName,
       number: newNumber,
-      id: originalPersons.length,
+      id: String(originalContacts.length + 1),
     }
-    // validate
-    if(originalPersons.some(person => person.name === newName)){
-      alert(`${newName} is already in the Phonebook!`);
+    // validate or update
+    if(originalContacts.some(contact => contact.name === newName)){
+      if(window.confirm(`${newName} is already in the Phonebook. Would you like to update their number ?`)) {
+        const repeatedContact = originalContacts.find(contact => contact.name === newName)
+        const modifiedContact = {
+          ...repeatedContact,
+          name: newName,
+          number: newNumber,
+        }
+        update(modifiedContact);
+      }
     }
     else{
-      setOriginalPersons(originalPersons.concat(nameObject));
-      setFilteredPersons(originalPersons.concat(nameObject));
-      setNewName('');
-      setNewNumber('');
-    }
+      // update backend server
+      phonebookService
+      .create(contactObject)
+      .then(addedContact => {
+        setOriginalContacts(originalContacts.concat(addedContact));
+        setFilteredContacts(originalContacts.concat(addedContact));
+        setNewName('');
+        setNewNumber('');
+      })
+    }    
   }
 
   const handleNameChange = (event) => {
@@ -55,24 +63,46 @@ export default function App() {
     setNewNumber(event.target.value);
   }
 
-  // search
+  // search contacts
   const handleSearchResult = (event) => {
     let searchString = event.target.value
     setNewSearch(searchString);
     const regexp = new RegExp(searchString, 'i'); // case insensitive
-    const searchResult = originalPersons.filter(person => regexp.test(person.name))
-    console.log(...searchResult);
-    searchString ? setFilteredPersons([...searchResult]) : setFilteredPersons(originalPersons);
+    const searchResult = originalContacts.filter(person => regexp.test(person.name))
+    searchString ? setFilteredContacts([...searchResult]) : setFilteredContacts(originalContacts);
   }
+
+  // remove existing contact
+  const deleteContact = (contactToDelete) => {
+    phonebookService
+      .remove(contactToDelete.id)
+      .then(() => { 
+        setFilteredContacts(filteredContacts.filter(contact => contact.id !== contactToDelete.id));
+        setOriginalContacts(originalContacts.filter(contact => contact.id !== contactToDelete.id));
+      })
+  }
+
+  // update existing contact
+  const update = (contactToUpdate) => {
+    phonebookService
+    .update(contactToUpdate.id, contactToUpdate)
+    .then(updatedContact => {
+      setFilteredContacts(filteredContacts.map(contact => contact.id !== updatedContact.id ? contact : updatedContact))
+      setOriginalContacts(originalContacts.map(contact => contact.id !== updatedContact.id ? contact : updatedContact))
+      setNewName('');
+      setNewNumber('');
+    })
+  }
+
 
   return (
     <div>
       <h1>Phonebook</h1>
         <Filter searchTerm={newSearch} handleSearchResult={handleSearchResult} />
       <h2>Add New Contact</h2>    
-        <PersonForm name={newName} handleName={handleNameChange} number={newNumber} handleNumber={handleNumberChange} handleSubmit={addContact} />
+        <ContactForm name={newName} handleName={handleNameChange} number={newNumber} handleNumber={handleNumberChange} handleSubmit={addContact} />
       <h2>People</h2>
-        <Persons personsList={filteredPersons}/>
+        <Contacts contactsList={filteredContacts} deleteContact={deleteContact}/>
     </div>
   )
 }
