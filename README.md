@@ -8,7 +8,7 @@
 | **Part 0** | [Fundamentals of Web Apps](#part-0---fundamentals-of-web-apps) |
 | **Part 1** | [Introduction to React](#part-1---introduction-to-react) |
 | **Part 2** | [Communicating with Server](#part-2---communicating-with-server) |
-
+| **Part 3** | [Programming a server with Node.js and Express](#part-3---programming-a-server-with-nodejs-and-express) |
 
 <br>
 <hr>
@@ -46,3 +46,19 @@
     | Ex 2.6 to 2.10 | Initiate [Phonebook app](/part2/phonebook/src/App.jsx) |
     | Ex 2.11 | Enhance Phonebook app, Setup `json-server`, `axios` library and `useEffect` hook for Phonebook contacts |
     | Ex 2.12 to 2.15 | Enhance Phonebook app, Setup HTTP Methods, update backend & frontend |
+    | Ex 2.16, 2.17 | Setup notifications for CRUD operations, Error handling using `catch` block |
+
+<br>
+<hr>
+
+# Part 3 - Programming a server with Node.js and Express
+- Implement functionality on server-side tech stack and understand Backend development.
+    - Exercises to build a REST API in `Node.js` using `Express`
+    - Exercises to deploy application to the Internet
+    - Exercises to setup and save application data to `MongoDB`
+    
+    | Exercises | Description |
+    | --- | --- |
+
+<br>
+<hr>
