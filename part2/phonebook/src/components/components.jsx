@@ -1,3 +1,39 @@
+export function NotificationMessage({ message, type}){
+    const successStyle = {
+        color: 'green',
+        background: 'lightgrey',
+        fontSize: 20,
+        borderStyle: 'solid',
+        borderRadius: 5,
+        padding: 10,
+        marginTop: 10,
+        marginBottom: 10, 
+        textAlign: 'center'
+    }
+    const failStyle = {
+        color: 'red',
+        background: 'lightgrey',
+        fontSize: 20,
+        borderStyle: 'solid',
+        borderRadius: 5,
+        padding: 10,
+        marginTop: 10,
+        marginBottom: 10, 
+        textAlign: 'center'
+    }
+    const notificationStyle = type === 'success' ? successStyle : failStyle
+
+    if(message === null) { return null }
+
+    return(
+        <>
+        <div style={notificationStyle}>
+            {message}
+        </div>
+        </>
+    )
+}
+
 export function Filter({ searchTerm, handleSearchResult }){
     return (
         <>
@@ -6,7 +42,7 @@ export function Filter({ searchTerm, handleSearchResult }){
         </div> 
         </>
     )
-    }
+}
   
 export function ContactForm({ name, handleName, number, handleNumber, handleSubmit  }) {
     return (
@@ -40,4 +76,29 @@ export function Contacts({contactsList, deleteContact}) {
         </ul>    
         </>
     )
+}
+
+export function Footer(){
+    const footerStyle = {
+        color: 'blue',
+        fontSize: 16,
+        background: 'darkgrey',
+        padding: 10,
+        margin: 'auto',
+        borderRadius: 5,
+        borderStyle: 'solid',
+        borderWidth: 1,
+        textAlign: 'center'
+    }
+
+    return (
+        <>
+        <footer style={footerStyle}>
+            <pre>
+                Phonebook app | Created by Prakirth Govardhanam, MIT License 
+            </pre>
+        </footer>
+        </>
+    )
+
 }

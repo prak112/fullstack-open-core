@@ -26,11 +26,6 @@
       "number": "111-777-11174"
     },
     {
-      "id": "6",
-      "name": "Mary Poppendieck",
-      "number": "39-23-6423122"
-    },
-    {
       "id": "7",
       "name": "Mallamma Pochamma",
       "number": "91-456-789-1234"
@@ -41,9 +36,14 @@
       "number": "91-789-987-1234"
     },
     {
-      "id": "9",
-      "name": "John Abraham",
-      "number": "98-984-984-9812"
+      "id": "10",
+      "name": "Surida Sankari",
+      "number": "358-145-1456-7854"
+    },
+    {
+      "id": "11",
+      "name": "Sallita Sampari",
+      "number": "358-456-4567-4567"
     }
   ]
 }
