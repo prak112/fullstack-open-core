@@ -1,3 +1,10 @@
+# Goal
+- To qualify for the "[Interview Promise](https://fullstackopen.com/en/part0/general_info#interview-promise)"
+    - [ ]  [Core course](https://fullstackopen.com/en/part0/general_info#parts-and-completion) - 7 parts
+    - [ ]  [Course exam](https://fullstackopen.com/en/part0/general_info#the-course-exam) - after completing parts 0-7
+    - [ ]  [Extended course](https://fullstackopen.com/en/part0/general_info#parts-and-completion) - 6 parts
+    - [ ]  Course project - [Full stack project (10 ECTS)](https://fullstackopen.com/en/part0/general_info#full-stack-project)
+
 # Overview
 - Exercises and Projects from [Full Stack Development open course](https://fullstackopen.com/en/) by University of Helsinki for learning **MERN** (_MongoDB, Express.js, React, Node.js_) stack
 - This repository consists of Core and Extension parts of the course, i.e., Parts 0-7
