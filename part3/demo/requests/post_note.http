@@ -1,0 +1,28 @@
+
+POST http://localhost:3001/api/notes/ HTTP/1.1/
+content-type: application/json
+
+{
+    "content":  "Postman, REST Client, Rapid API Client are all good API testing tools for beginners",
+    "important": true
+}
+
+####
+
+POST http://localhost:3001/api/notes/ HTTP/1.1/
+content-type: application/json
+
+{
+    "content":  "",
+    "important": true
+}
+
+####
+
+POST http://localhost:3001/api/notes/ HTTP/1.1/
+content-type: application/json
+
+{
+    "content":  "Note has NO importance",
+    "important": ""
+}
