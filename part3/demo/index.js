@@ -1,8 +1,12 @@
-// import Node built-in webserver using CommonJS syntax
+// load environment variables
+const dotenv = require('dotenv')
+dotenv.config()
+
+// import Node built-in/custom modules using CommonJS syntax
 const express = require('express')
+const Note = require('./models/note')
 const app = express()
 app.use(express.json());    // json-parser for POST request
-
 
 // sampleJSON data to render
 let notes = [
@@ -28,7 +32,6 @@ let notes = [
     }
 ]
 
-
 // register different routes and HTTP methods
 // GET
 app.get('/', (request, response) => {
@@ -36,7 +39,9 @@ app.get('/', (request, response) => {
 })
 
 app.get('/api/notes', (request, response) => {
-    response.json(notes)
+    Note.find({}).then(notes => {
+        response.json(notes)
+    })
 })
 
 app.get('/api/notes/:id', (request, response) => {
@@ -80,6 +85,6 @@ app.delete('/api/notes/:id', (request, response) => {
 })
 
 // declare port number
-const PORT = 3001
+const PORT = process.env.PORT
 app.listen(PORT);
 console.log(`Server running on port ${PORT}`);
