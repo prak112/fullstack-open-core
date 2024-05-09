@@ -1,36 +1,16 @@
 // load environment variables
 const dotenv = require('dotenv')
+const morgan = require('morgan')
 dotenv.config()
 
 // import Node built-in/custom modules using CommonJS syntax
 const express = require('express')
 const Note = require('./models/note')
 const app = express()
-app.use(express.json());    // json-parser for POST request
 
-// sampleJSON data to render
-let notes = [
-    {
-        id: 1,
-        content: "HTML is easy",
-        important: true
-    },
-    {
-        id: 2,
-        content: "Browser can execute only JavaScript",
-        important: false
-    },
-    {
-        id: 3,
-        content: "GET and POST are the most important methods of HTTP protocol",
-        important: true
-    },
-    {
-        id: 4,
-        content: "HTTP Methods are useless. (This note should be deleted)",
-        important: false
-    }
-]
+// Middleware
+app.use(express.json());    // json-parser for POST request
+app.use(morgan('tiny'))
 
 // register different routes and HTTP methods
 // GET
@@ -46,20 +26,23 @@ app.get('/api/notes', (request, response) => {
 
 app.get('/api/notes/:id', (request, response) => {
     const id = Number(request.params.id)
-    const note = notes.find((note => note.id === id))
-    if(!note){
-        response.status(404).send('<pre>Requested note does not exist. Check the note ID again.</pre>')
-    }
-    else{ response.json(note) }
+    Note.findById(id)
+    .then(note => {
+        if(note){
+            response.json(note)
+        }
+        else{
+            response.status(400).end()
+        }
+     })
+    .catch(error => {
+        console.log('ERROR : ', error)
+        response.status(400).send({error: 'Malformed request syntax/Invalid request framing'})        
+    })
 })
 
 // POST
 app.post('/api/notes', (request, response) => {
-    const generateId = () => {
-        const maxId = notes.reduce((max, note) => Math.max(max, +note.id), 0)
-        return maxId + 1
-    }
-
     const body = request.body
     if(!body.content){
         return response.status(400).json({
@@ -67,24 +50,43 @@ app.post('/api/notes', (request, response) => {
         })
     }
     
-    const note = {
+    const note = new Note({
         content: body.content,
-        important: Boolean(body.important) || false,
-        id: generateId()
-    }
-    notes.concat(note)
-    response.json(note)
+        important: body.important || false
+    })
+    note.save().then(savedNote => {
+        response.json(savedNote)
+    })
 })
-
 
 // DELETE
-app.delete('/api/notes/:id', (request, response) => {
-    const id = Number(request.params.id)
-    notes = notes.filter(note => note.id !== id)
-    response.status(204).end();
+app.delete('/api/notes/:id', (request, response, next) => {
+    Note.findByIdAndDelete(request.params.id)
+        .then(result => {
+            response.status(204).end()
+        })
+        .catch(error => next(error))
 })
 
-// declare port number
-const PORT = process.env.PORT
-app.listen(PORT);
-console.log(`Server running on port ${PORT}`);
+// declare port and log
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
+
+
+// Unknown Endpoint handler
+const unknownEndpoint = (request, response) => {
+    response.status(404).send({error : 'Unknown Endpoint'})
+}
+app.use(unknownEndpoint)    // load before-last Middleware
+
+// Requests Error handler
+const errorHandler = (error, request, response, next) => {
+    console.error(error.message)
+    if(error.name === 'CastError'){
+        response.status(400).send({error: 'Malformed request syntax/Invalid request framing'})
+    }
+    next(error)
+}
+app.use(errorHandler)

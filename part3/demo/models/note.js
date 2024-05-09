@@ -14,7 +14,7 @@ if (!process.env.DB_PASSWORD) {
 const password = process.env.DB_PASSWORD
 const databaseName = 'noteApp'
 
-const url = //process.env.MONGODB_URI
+const url = //process.env.MONGODB_URI ||
 `mongodb+srv://fsopen:${password}@cluster0.hnqrjj0.mongodb.net/${databaseName}?retryWrites=true&w=majority&appName=Cluster0`
 
 console.log('connecting to ', url)
@@ -47,3 +47,5 @@ noteSchema.set('toJSON', {
 
 // export to index.js
 module.exports = mongoose.model('Note', noteSchema)
+
+// close DB connection after 10s ?? 
