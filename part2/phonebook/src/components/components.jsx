@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 export function NotificationMessage({ message, type}){
     const successStyle = {
         color: 'green',
@@ -24,14 +26,15 @@ export function NotificationMessage({ message, type}){
     const notificationStyle = type === 'success' ? successStyle : failStyle
 
     if(message === null) { return null }
-
-    return(
-        <>
-        <div style={notificationStyle}>
-            {message}
-        </div>
-        </>
-    )
+    else {
+        return(
+            <>
+            <div style={notificationStyle}>
+                {message}
+            </div>
+            </>
+        )
+    }
 }
 
 export function Filter({ searchTerm, handleSearchResult }){
@@ -55,7 +58,7 @@ export function ContactForm({ name, handleName, number, handleNumber, handleSubm
             Number : <input value={number} type='tel' onChange={handleNumber} />
             </div>
             <div>
-            <button type='submit'>Add</button>
+            <button type="submit">Add</button>
             </div>
         </form>    
         </>
@@ -66,7 +69,7 @@ export function Contacts({contactsList, deleteContact}) {
     return (
         <>
         <ul>
-            { contactsList.map((contact) => 
+            { contactsList.map((contact) =>
                 <li key={contact.id}>
                     <b>{contact.name} :</b>  {contact.number} &ensp;
                     <button onClick={() => deleteContact(contact)}>delete</button>

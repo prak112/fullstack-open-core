@@ -21,9 +21,14 @@ export default function App() {
     setNewNumber(event.target.value);
   }
 
+  const handleError = (error) => {
+    console.log('ERROR : ', error.response.data.error);
+    errorDisplay(error.response.data.error, setNotification, setNotificationType);
+    resetNotifications(setNotification, setNotificationType);
+  }
 
-  // Handle CRUD operations using HTTP requests via phonebook.js to db.json
-  // render all contacts
+  // Handle CRUD operations using HTTP requests
+  // GET - render all contacts
   const hook = () => {
     phonebookService
       .getAll()
@@ -31,29 +36,21 @@ export default function App() {
         setOriginalContacts(initialContacts);
         setFilteredContacts(initialContacts);
       })      
-      .catch(error => {
-        errorDisplay(error, setNotification, setNotificationType);
-        resetNotifications(setNotification, setNotificationType);
-      })
+      .catch(error => handleError(error) )
   }
   useEffect(hook, []);
     
-
-  // new contact
+  // POST - new contact
   const addContact = (event) => {
-    event.preventDefault();
-    const generateUniqueId = () => {
-      const maxId = originalContacts.reduce((max, contact) => Math.max(max, +contact.id), 0)
-      return maxId + 1
-    }
+    event.preventDefault()
+
     const contactObject = {
       name: newName,
       number: newNumber,  
-      id: String(generateUniqueId())
     }
-
-    // validate or update
+  
     if(originalContacts.some(contact => contact.name === newName)){
+      // validate or update
       if(window.confirm(`${newName} is already in the Phonebook. Would you like to update their number ?`)) {
         const repeatedContact = originalContacts.find(contact => contact.name === newName)
         const modifiedContact = {
@@ -66,26 +63,27 @@ export default function App() {
         resetNotifications(setNotification, setNotificationType);
       }
     }
-    else{
-      // update backend server
+    else {
+      // update states to show updated list of contacts
       phonebookService
       .create(contactObject)
       .then(addedContact => {
-        setOriginalContacts(originalContacts.concat(addedContact));
-        setFilteredContacts(originalContacts.concat(addedContact));
-        setNewName('');
-        setNewNumber('');
-        setNotification(`Added '${contactObject.name}'`);
-        resetNotifications(setNotification, setNotificationType);
+        try {
+          console.log(originalContacts)
+          setOriginalContacts(originalContacts.concat(addedContact));
+          setFilteredContacts(originalContacts.concat(addedContact));
+          setNewName('');
+          setNewNumber('');
+          setNotification(`Added '${contactObject.name}'`);
+          resetNotifications(setNotification, setNotificationType);
+        }
+        catch (error) { handleError(error) }          
       })
-      .catch(error => {
-        errorDisplay(error, setNotification, setNotificationType);
-        resetNotifications(setNotification, setNotificationType);
-      })
+      .catch(error => { handleError(error) })
     }    
   }
 
-  // update existing contact
+  // PUT - update existing contact
   const update = (contactToUpdate) => {
     phonebookService
     .update(contactToUpdate.id, contactToUpdate)
@@ -95,14 +93,7 @@ export default function App() {
       setNewName('');
       setNewNumber('');
     })
-    .catch(error => {
-      console.error(error);
-      setNotification(`Oops! "${contactToUpdate.name}" has already been removed from server.`);
-      setNotificationType('fail');
-      resetNotifications(setNotification, setNotificationType);
-      // refresh contacts list
-      hook();
-    })
+    .catch(error => { handleError(error) })
   }
 
   // search contacts
@@ -114,7 +105,7 @@ export default function App() {
     searchString ? setFilteredContacts([...searchResult]) : setFilteredContacts(originalContacts);
   }
 
-  // remove existing contact
+  // DELETE - remove existing contact
   const deleteContact = (contactToDelete) => {
     phonebookService
       .remove(contactToDelete.id)
@@ -124,12 +115,7 @@ export default function App() {
         setNotification(`Deleted '${contactToDelete.name}'`);
         resetNotifications(setNotification, setNotificationType);
       })
-      .catch(error => {
-        errorDisplay(error, setNotification, setNotificationType);
-        resetNotifications(setNotification, setNotificationType);
-        // refresh contacts list
-        hook();
-      })
+      .catch(error => handleError(error))
   }
 
   return (
