@@ -16,7 +16,7 @@
 | **Part 1** | [Introduction to React](#part-1---introduction-to-react) |
 | **Part 2** | [Communicating with Server](#part-2---communicating-with-server) |
 | **Part 3** _(in seperate repository)_| [Programming a server with Node.js and Express](#part-3---programming-a-server-with-nodejs-and-express) |
-| **Part 4** _(in seperate repository)_| [Testing and User administration](#part-4---testing-and-user-administration-in-express-with-supertest) |
+| **Part 4** _(in seperate repository)_| [Testing and User administration](#part-4---testing-and-user-administration-in-express) |
  
 
 <br>
