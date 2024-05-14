@@ -16,8 +16,11 @@
 | **Part 1** | [Introduction to React](#part-1---introduction-to-react) |
 | **Part 2** | [Communicating with Server](#part-2---communicating-with-server) |
 | **Part 3** _(in seperate repository)_| [Programming a server with Node.js and Express](#part-3---programming-a-server-with-nodejs-and-express) |
+| **Part 4** _(in seperate repository)_| [Testing and User administration](#part-4---testing-and-user-administration-in-express-with-supertest) |
+ 
 
 <br>
+<hr>
 <hr>
 
 # Part 0 - Fundamentals of Web Apps
@@ -58,7 +61,7 @@
 <br>
 <hr>
 
-# Part 3 - Programming a server with Node.js and Express
+# Part 3 - Programming a server with `NodeJS` and `Express`
 - Implement functionality on server-side tech stack and understand Backend development and learn how to
     - build a REST API in `Node.js` using `Express`
     - deploy application to the Internet
@@ -68,3 +71,9 @@
 
 <br>
 <hr>
+
+# Part 4 - Testing and User Administration in `Express`
+- Structure the backend based on Model-View-Controller (MVC) architecture
+- Implement Testing of Node applications with `supertest`
+- Implement User administration and Token authentication with `jsonwebtoken` or `express-jwt`
+- Exercises at [FullStackOpen-core-part4]()
