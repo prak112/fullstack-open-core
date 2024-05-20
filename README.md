@@ -76,4 +76,4 @@
 - Structure the backend based on Model-View-Controller (MVC) architecture
 - Implement Testing of Node applications with `supertest`
 - Implement User administration and Token authentication with `jsonwebtoken` or `express-jwt`
-- Exercises at [FullStackOpen-core-part4]()
+- Exercises at [FullStackOpen-core-part4](https://github.com/prak112/FullStackOpen-core-part4)
