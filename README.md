@@ -15,9 +15,9 @@
 | **Part 0** | [Fundamentals of Web Apps](#part-0---fundamentals-of-web-apps) |
 | **Part 1** | [Introduction to React](#part-1---introduction-to-react) |
 | **Part 2** | [Communicating with Server](#part-2---communicating-with-server) |
-| **Part 3** _(in seperate repository)_| [Programming a server with Node.js and Express](#part-3---programming-a-server-with-nodejs-and-express) |
-| **Part 4** _(in seperate repository)_| [Testing and User administration](#part-4---testing-and-user-administration-in-express) |
- 
+| **Part 3** _(in seperate repository)_ | [Programming a server with Node.js and Express](#part-3---programming-a-server-with-nodejs-and-express) |
+| **Part 4** _(in seperate repository)_ | [Backend Testing and User administration](#part-4---testing-and-user-administration-in-express-with-supertest) |
+| **Part 5** _(in seperate repository)_ | [Frontend Testing (React Apps) and End-to-End Testing ](#part-5---frontend-testing-react-apps-and-end-to-end-testing) |  
 
 <br>
 <hr>
@@ -77,3 +77,15 @@
 - Implement Testing of Node applications with `supertest`
 - Implement User administration and Token authentication with `jsonwebtoken` or `express-jwt`
 - Exercises at [FullStackOpen-core-part4](https://github.com/prak112/FullStackOpen-core-part4)
+
+<br>
+<hr>
+
+# Part 5 - Frontend Testing (React Apps) and End-to-End Testing
+- Setup frontend relative to Backend (Blogs App)
+- Test React apps using `Vitest`, `jsdom` and `jest-dom` from `react-testing-library`
+- End-to-End Testing with either `Playwright` or `Cypress`
+- Exercises at [FullStackOpen-core-part5](https://github.com/prak112/FullStackOpen-core-part5)
+
+<br>
+<hr>
