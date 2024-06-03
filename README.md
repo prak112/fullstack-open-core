@@ -17,8 +17,7 @@
 | **Part 2** | [Communicating with Server](#part-2---communicating-with-server) |
 | **Part 3** _(in seperate repository)_ | [Programming a server with Node.js and Express](#part-3---programming-a-server-with-nodejs-and-express) |
 | **Part 4** _(in seperate repository)_ | [Backend Testing and User administration](#part-4---testing-and-user-administration-in-express-with-supertest) |
-| **Part 5** _(in seperate repository)_ | [Frontend Testing (React Apps) and End-to-End Testing ](#part-5---frontend-testing-react-apps-and-end-to-end-testing) | 
- 
+| **Part 5** _(in seperate repository)_ | [Frontend Testing (React Apps) and End-to-End Testing ](#part-5---frontend-testing-react-apps-and-end-to-end-testing) |  
 
 <br>
 <hr>
