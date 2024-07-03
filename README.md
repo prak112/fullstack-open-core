@@ -18,6 +18,8 @@
 | **Part 3** _(in seperate repository)_ | [Programming a server with Node.js and Express](#part-3---programming-a-server-with-nodejs-and-express) |
 | **Part 4** _(in seperate repository)_ | [Backend Testing and User administration](#part-4---testing-and-user-administration-in-express) |
 | **Part 5** _(in seperate repository)_ | [Frontend Testing (React Apps) and End-to-End Testing ](#part-5---frontend-testing-react-apps-and-end-to-end-testing) |  
+| **Part 6** _(in seperate repository)_ | [Advanced State Management](#part-6---advanced-state-management-on-frontend-and-backend) |
+
 
 <br>
 <hr>
@@ -86,6 +88,15 @@
 - Test React apps using `Vitest`, `jsdom` and `jest-dom` from `react-testing-library`
 - End-to-End Testing with either `Playwright` or `Cypress`
 - Exercises at [FullStackOpen-core-part5](https://github.com/prak112/FullStackOpen-core-part5)
+
+<br>
+<hr>
+
+# Part 6 - Advanced State Management on Frontend and Backend
+- Frontend State Management using `Redux` library on *unicafe* app from [Part 1](#part-1---introduction-to-react)
+- Frontend State Management using `react-redux` hooks on *anecdotes* app from [Part 1](#part-1---introduction-to-react)
+- Backend Server State Management using `React Query` library and `useReducer` hook on *anecdotes* app
+- Exercises at [FullStackOpen-core-part6](https://github.com/prak112/FullStackOpen-core-part6)
 
 <br>
 <hr>
